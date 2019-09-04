@@ -1,0 +1,206 @@
+
+\section{Sobre HASDE}
+
+\subsection{¿Qué es HASDE?}
+
+HASDE es una \textbf{H}erramienta abierta para \textbf{A}prendizaje interactivo del método de \textbf{S}lope \textbf{DE}flection. %
+%
+La herramienta permite que la persona que se encuentra aprendiendo la metodología de aplicación del Método de Slope Deflection para analizar pórticos, pueda verificar cada paso realizado e identificar posibles errores de forma autónoma.
+
+
+HASDE está desarrollada utilizando GNU-Octave 5.1.0, utilizando las funciones de interfaz gráfica disponibles a partir de esta versión. %
+%
+La versión actual del código está disponible en el repositorio abierto: \href{https://github.com/grupomises/HASDE}{https://github.com/grupomises/HASDE}. 
+
+\subsection{Apoyos}
+El código fue desarrollado con el apoyo de la Comisión Sectorial de Enseñanza en el marco de la ejecución del proyecto de innovaciones educativas titulado: 
+``Rediseño de prácticas de enseñanza y evaluación en Resistencia de Materiales''\footnote{ver resumen público de proyecto en	\href{https://www.cse.udelar.edu.uy/blog/proyecto-financiado/rediseno-de-practicas-de-ensenanza-y-evaluacion-en-resistencia-de-materiales/}{https://www.cse.udelar.edu.uy/blog/proyecto-financiado/rediseno-de-practicas-de-ensenanza-y-evaluacion-en-resistencia-de-materiales/}}.
+
+
+\section{Ejemplo demostrativo}
+
+Para mostrar el funcionamiento del código se desarrolla un ejemplo demostrando el desarrollo a ser realizado por la persona que utilice la herramienta. Se comienza con la resolución analítica del ejemplo para luego pasar al ingreso de los cálculos en HASDE para su verificación.
+
+\subsection{Planteo de problema}
+
+Sea la estructura mostrada en la \autoref{fig:ejem} donde las barras tienen módulo de Young $E=210 \times 10^{6}$ kPa y sección transversal $0.05 \text{m} \times 0.05$ m, es decir que $EI=109.4 $ kNm$^2$. %
+También se conoce que $P = 1350$ kN.
+
+
+
+Se desea determinar desplazamientos y giros nodales. %
+
+\begin{figure}[htb]
+	\centering
+	\def\svgwidth{0.5\textwidth}
+	\input{figs/portic.pdf_tex}
+	\caption{Pórtico de ejemplo.}
+	\label{fig:ejem}
+\end{figure}
+
+\subsection{Resolución analítica}
+
+
+\subsubsection{Determinación de incógnitas}
+La estructura es desplazable y el desplazamiento horizontal de $2$ es una incógnita a determinar. %
+%
+Se utilizará como variable el desplazamiento horizontal del piso $2-3$, denotado como $\Delta$ considerado positivo hacia la izquierda. %
+%
+Las otras variables a determinar son los giros $\theta_2$ y $\theta_3$. %
+Por lo tanto 
+$$
+\boxed{\text{Número de incógnitas: } 3},
+$$
+siendo:
+$$
+\boxed{
+ \theta_2, \theta_3 \text{ y } \Delta}
+$$
+donde $\Delta$ es el desplazamiento horizontal.
+
+
+Se utilizarán en todas las ecuaciones las condiciones de contorno: desplazamientos y giros nulos en $1$ y 2.
+
+
+\subsubsection{Ecuaciones de solicitaciones por elemento}
+
+Las ecuaciones de equilibro que se usarán para aplicar el método son las de equilibrio de momentos en 2, equilibrio de momentos en 3 y equilibrio de fuerzas en el piso. Para esto se calculan a continuación algunas de las fuerzas y momentos nodales que serán necesarias:
+
+Usando la ecuación de momento en 2 en la barra 2-1 se tiene:
+$$
+	M_{21} = \frac{2EI}{6} ( 2\theta_2 - 3 \frac{ \Delta } {6} ).
+$$
+
+sustituyendo $EI$ se tiene%
+\begin{equation}
+\boxed{
+M_{21}  = 72.9 \theta_2 - 18.2 \Delta}
+\end{equation}
+ 
+Usando la ecuación de momento en 2 en la barra 2-3 se tiene:
+$$
+	M_{23} = \frac{2EI}{9} (2\theta_B +\theta_C ) + \frac{ P \cdot 3 \cdot 6^2}{9^2}
+$$
+
+sustituyendo $EI$:
+%
+\begin{equation}
+\boxed{
+M_{23} = 48.6 \theta_2 + 24.3 \theta_3  + 1800
+}
+\end{equation}
+
+
+
+Para la barra 2-3 se tiene:
+$$
+M_{32} = \frac{2EI}{9} (2\theta_3 +\theta_2 ) - \frac{P \cdot 3^2 \cdot 6}{9^2}
+$$
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+M_{32} = 48.6 \theta_3 + 24.3 \theta_2 - 900
+}
+\end{equation}
+
+\textbf{completar
+...
+}
+%y para la barra CD
+%\begin{equation}
+%M_{CD} = \frac{2EI}{9} (2\theta_C - \frac{3}{9} \Delta_{BC} )
+%\end{equation}
+%
+%
+%
+%
+%
+%\subsubsection{Ecuaciones de equilibrio}
+%
+%
+%Usando el equilibrio de momentos en B ($M_{BA}+M_{BC}=0$) y simplificando se tiene
+%\begin{equation}
+%	\boxed{
+%		2EI \left( 2 \left( \frac{1}{6}+\frac{1}{9} \right) \theta_B + \frac{1}{9} \theta_C - \frac{3 }{6^2} \Delta_{BC} \right) = - \frac{4}{3} P.
+%	}
+%\end{equation}
+%
+%Esta consiste en la primer ecuación que relaciona las tres incógnitas a determinar.
+%
+%
+%
+%
+%Usando el equilibrio de momentos en C y simplificando se tiene:
+%\begin{equation}
+%	\boxed{
+%		2EI \left( \frac{1}{9} \theta_B + \frac{4}{9} \theta_C - \frac{3 }{9^2} \Delta_{BC} \right) = \frac{2}{3} P.
+%	}
+%\end{equation}
+%
+%Finalmente la ecuación de equilibrio de cortantes del piso es equivalente a la ecuación:
+%\begin{equation}
+%	\frac{M_{AB}+M_{BA}}{L_{AB}}
+%	+ 
+%	\frac{M_{CD}+M_{DC}}{L_{CD}} = 0
+%\end{equation}
+%
+%Calculando la expresiones de los momentos $M_{CD}$ y $M_{AB}$, sustituyendo y simplificando se obtiene:
+%\begin{equation}
+%	\boxed{
+%		2EI \left( -\frac{3}{6^2} \theta_B - \frac{3}{9^2} \theta_C + 6 \left( \frac{1}{6^3} +  \frac{1}{9^3} \right) \Delta_{BC} \right) = 0.
+%	}
+%\end{equation}
+%
+%El sistema de ecuaciones lineales a resolver es entonces
+%\begin{equation}
+%	\bfK   
+%	\left[
+%	\begin{matrix}
+%		\theta_B\\
+%		\theta_C\\
+%		\Delta_{BC}
+%	\end{matrix}
+%	\right]
+%	=
+%	P
+%	\left[
+%	\begin{matrix}
+%		-4/3\\
+%		2/3\\
+%		0
+%	\end{matrix}
+%	\right]
+%\end{equation}
+%donde $\bfK$ es la matriz del sistema dada por: 
+%\begin{equation}
+%	\bfK =
+%	2EI \left[
+%	\begin{matrix}
+%		2 \left( \frac{1}{6}+ \frac{1}{9}\right) & \frac{1}{9} & -\frac{3}{6^2}\\
+%		\frac{1}{9} & \frac{4}{9} & -\frac{3}{9^2}\\
+%		-\frac{3}{6^2} & -\frac{3}{9^2} &  6\left( \frac{1}{6^3}  + \frac{1}{9^3}\right)
+%	\end{matrix}
+%	\right]
+%\end{equation}
+%
+%Esta matriz es la llamada matriz de rigidez. Previo a la resolución del sistema es importante verificar que la misma es simétrica. %
+%%
+%Para resolver se pueden ejecutar los siguientes comandos en Octave:
+%
+%\begin{verbatim}
+%K = 2* [ 2*(1/6+1/9)  1/9         -3/6^2 ; ...
+%1/9         4/9         -3/9^2 ; ...
+%-3/6^2     -3/9^2    6*(1/6^3+1/9^3) ] ;
+%u = K \ [-4/3; 2/3; 0]
+%\end{verbatim}
+%
+%
+%Obteniendo la solución:
+%\begin{equation}
+%	\theta_B = \frac{ -1.90385 P }{EI}, \theta_C = \frac{ 0.93930
+%		P }{EI} \text{ y } \Delta_{BC} = \frac{-3.43990 P }{EI}
+%\end{equation}
+
+
+\subsection{Verificación usando HASDE}

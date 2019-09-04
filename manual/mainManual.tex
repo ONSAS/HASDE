@@ -1,0 +1,44 @@
+\documentclass[a4paper,10pt,twocolumn]{article} 
+
+\usepackage[a4paper,margin=20mm]{geometry} 
+\usepackage{float} 
+\usepackage{adjustbox} 
+\usepackage{graphicx} 
+\usepackage{color} 
+\usepackage{booktabs} 
+
+\usepackage{array} 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{libertine} 
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\graphicspath{{./figs/}}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand*\rectangled[1]{%
+	\tikz[baseline=(R.base)]\node[draw,rectangle,inner sep=2.5pt](R) {#1};\!
+}
+
+\usepackage[most]{tcolorbox}
+\include{./definitions}
+
+\usepackage{lineno}
+
+\begin{document} 
+
+\linenumbers
+
+\title{Manual de usuario de HAASDE}
+\author{Joaquín Viera, Jorge Pérez Zerpa}
+\date{\today}
+\maketitle
+
+\input{contenidoManual.tex}
+
+
+\end{document}
