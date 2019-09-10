@@ -86,12 +86,15 @@
   ppfb = 0.01 * altoPantalla ;
 	
 % Button
-	buttonH = 25 ;
+	%~ buttonH = 25 ;
+	buttonH = .03*altoPantalla ;
 	
 % Load buttons
-	buttonLH = 25 ;
-  buttonLW = 100 ;
-  incremLH = 0.085 * anchoPantalla ;
+	%~ buttonLH = 25 ;
+	buttonLH = 0.03*altoPantalla ;
+  buttonLW = 0.08*anchoPantalla ;
+  %~ incremLH = 0.085 * anchoPantalla ;
+  incremLH = 0.1 * anchoPantalla ;
   ppfbSys = 0.0225 * altoPantalla ;	
 
 % Editboxes

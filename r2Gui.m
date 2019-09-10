@@ -632,7 +632,8 @@ function actionButton(src, eventdata, fig, fig3)
   
   % BORRAR DESPUES
   
-  handles.onsasPath = [ pwd '.\onsas'] ;
+  %~ handles.onsasPath = [ pwd '.\onsas'] ;
+  handles.onsasPath = [ pwd '/onsas'] ;
   %~ handles.onsasPath = 'C:\Users\Usuario\Desktop\repos\onsas' ;
   addpath( [ handles.onsasPath '/sources'] );
 	addpath( [ handles.onsasPath '/input'  ] );
