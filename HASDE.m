@@ -1,15 +1,21 @@
 % Disclaimer ...
 
 
-function r2Gui
+function HASDE
 
 	close all, clear all, clc
+  
+  addpath( [ pwd '/src' ] ) ;
+
 	GUIgeom
+  
 	
 	
   fig 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'position', vecFig, 'name', ['HASDe: Herramienta Abierta de Aprendizaje interactiva del metodo de Slope Deflection']) ;
-  fig2 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', 'Entrada de datos') 	 ;
-  fig3 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', '') 	 ;
+  fig2 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', 'Entrada de datos', 'position', [posxFigUiTable posyFigUiTable anchoFigUiTable altoFigUiTable]) ;
+  fig3 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', '', 'position', [posxFigUiTable posyFigUiTable anchoFigUiTable altoFigUiTable]) 	 ;
+  
+  posFig2 = get(fig2,'position')
   
   handles 	= guidata(fig) ;
 	handles2 	= guidata(fig2);
@@ -120,49 +126,57 @@ function r2Gui
 	
 	% Data Handles
 	
+  anchoTabUiTable = posFig2(3)*.8 
+  altoTabUiTable = posFig2(4)*.8 
+  posxTabUiTable = .1*posFig2(3) ;
+  posyTabUiTable = .1*posFig2(4) ;
+  
+  posVecTabUiTable = [ posxTabUiTable posyTabUiTable anchoTabUiTable altoTabUiTable ] ;
+  
 	handles2.incTable 				= uitable('parent', fig2, 'visible', 'off', 'columnname', handles.colUnkNames, 							...
 																	'columneditable', [true true true true], 					 'data', handles2.data1, 						...
-																	'position', [30 30 500 390] ) ;
+																	'position', posVecTabUiTable ) ;
 	handles2.elemEcTable 			= uitable('parent', fig2, 'visible', 'off', 'columnname', handles.elemEcNames, 							...
 																	'columneditable', [true true true true true true true true], 'data', handles2.dataEc, ...
-																	'position', [30 30 500 390] ) ;
+																	'position', posVecTabUiTable ) ;
 	handles2.kGlobTable 			= uitable('parent', fig2, 'visible', 'off',																		 							...
 																	'columneditable', [true true true true true true], 												 						...
-																	'position', [30 30 500 390] ) ;
+																	'position', posVecTabUiTable ) ;
 	handles2.forcesTable			= uitable('parent', fig2, 'visible', 'off',	'columnname', handles.forcesColNames,						...
 																	'columneditable', [true true true true true true], 												 						...
-																	'position', [30 30 500 390] ) ;																
+																	'position', posVecTabUiTable ) ;																
 	handles2.dispsValsTable 	= uitable('parent', fig2, 'visible', 'off', 'columnname', handles.colUnkNames, 							...
 																	'columneditable', [true true true true], 					 'data', handles2.data1, 						...
-																	'position', [30 30 500 390] ) ;
+																	'position', posVecTabUiTable ) ;
 	handles2.solicValsTable 	= uitable('parent', fig2, 'visible', 'off', 'columnname', handles.forcesNames, 							...
 																	'columneditable', [true true true true], 					 'data', handles2.dataSolic, 				...
-																	'position', [30 30 500 390] ) ;
+																	'position', posVecTabUiTable ) ;
 																	
 	% Problem Data Handles
 	
 	handles3.elemsTable				= uitable('parent', fig3, 'visible', 'off', 'columnname', handles3.elemsName, ...
 																	'columneditable', [false false], ...
-																	'position', [30 30 500 390]) ;																																																
+																	'position', posVecTabUiTable) ;																																																
 	handles3.nodesTable				= uitable('parent', fig3, 'visible', 'off', 'columnname', handles3.nodesName, ...
 																	'columneditable', [false false false], ...
-																	'position', [30 30 500 390]) ;
+																	'position', posVecTabUiTable) ;
 	handles3.nodalTable				= uitable('parent', fig3, 'visible', 'off', 'columnname', handles3.nodalName, ...
 																	'columneditable', [false false false false], ...
-																	'position', [30 30 500 390]) ;	
+																	'position', posVecTabUiTable) ;	
 	handles3.uniformTable			= uitable('parent', fig3, 'visible', 'off', 'columnname', handles3.unifoName, ...
 																	'columneditable', [false false false false false false false], ...
-																	'position', [30 30 500 390]) ;
-	
+																	'position', posVecTabUiTable) ;
+  
 	% Rows button
-	handles2.addRow 		= uicontrol('parent', fig2, 'String', 'Agregar fila'	, 'visible', 'off', 'position', [5 5 100 20], ...
+	handles2.addRow 		= uicontrol('parent', fig2, 'String', 'Agregar fila'	, 'visible', 'off', 'position', [anchoBotUiTable*.4 altoBotUiTable*.5 anchoBotUiTable altoBotUiTable], ...
 														'callback', {@Rows, fig2}) ; 
-	handles2.deleteRow 	= uicontrol('parent', fig2, 'String', 'Borrar fila'		, 'visible', 'off', 'position', [120 5 100 20], ...
+	handles2.deleteRow 	= uicontrol('parent', fig2, 'String', 'Borrar fila'		, 'visible', 'off', 'position', [anchoBotUiTable*1.8 altoBotUiTable*.5 anchoBotUiTable altoBotUiTable], ...
 														'callback', {@Rows, fig2}) ; 
 	% Close data buttons
-	handles2.closeFig		= uicontrol('parent', fig2, 'String', 'Cerrar'				, 'visible', 'off', 'position', [240 5 100 20], ...
+	handles2.closeFig		= uicontrol('parent', fig2, 'String', 'Cerrar'				, 'visible', 'off', 'position', [anchoBotUiTable*3.2 altoBotUiTable*.5 anchoBotUiTable altoBotUiTable], ...
 														'callback'	, {@closeTable, fig2, fig3}) ; 
-	handles3.closeFig		= uicontrol('parent', fig3, 'String', 'Cerrar'				, 'visible', 'off', 'position', [240 5 100 20], ...
+
+	handles3.closeFig		= uicontrol('parent', fig3, 'String', 'Cerrar'				, 'visible', 'off', 'position', [anchoBotUiTable*1.4 altoBotUiTable*.5 anchoBotUiTable altoBotUiTable], ...
 														'callback'	, {@closeTable, fig2, fig3}) ; 
 	
 	

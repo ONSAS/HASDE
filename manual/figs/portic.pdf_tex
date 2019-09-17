@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{159.83200442bp}%
+    \setlength{\unitlength}{159.80129461bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,21 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.86071012)%
+  \begin{picture}(1,0.86087553)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0.25230667,0.33501043){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{1}$\end{tabular}}}}%
+    \put(0.25235516,0.33507481){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{A}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{portic.pdf}}%
-    \put(0.14374405,0.78459284){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{2}$\end{tabular}}}}%
-    \put(0.77711168,0.80165849){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{3}$\end{tabular}}}}%
-    \put(0.64032317,0.07307359){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{4}$\end{tabular}}}}%
+    \put(0.14377168,0.78474362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{B}$\end{tabular}}}}%
+    \put(0.77726102,0.80181255){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{C}$\end{tabular}}}}%
+    \put(0.64044622,0.07308763){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\circled{D}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{portic.pdf}}%
-    \put(0.45333709,0.64048955){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}P\end{tabular}}}}%
-    \put(-0.00272186,0.54081142){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$6$ m\end{tabular}}}}%
+    \put(0.45342421,0.64061263){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$1350$ kN\end{tabular}}}}%
+    \put(-0.00272238,0.54091535){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$6$ m\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{portic.pdf}}%
-    \put(0.8799042,0.42548473){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$9$ m\end{tabular}}}}%
+    \put(0.8800733,0.4255665){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$9$ m\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{portic.pdf}}%
-    \put(0.27749489,0.8357971){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$3$ m\end{tabular}}}}%
-    \put(0.55485081,0.82993161){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$6$ m\end{tabular}}}}%
+    \put(0.27754822,0.83595772){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$3$ m\end{tabular}}}}%
+    \put(0.55495744,0.8300911){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$6$ m\end{tabular}}}}%
   \end{picture}%
 \endgroup%

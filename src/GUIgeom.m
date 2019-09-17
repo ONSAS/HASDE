@@ -97,6 +97,15 @@
   incremLH = 0.1 * anchoPantalla ;
   ppfbSys = 0.0225 * altoPantalla ;	
 
+  anchoFigUiTable = .4*anchoPantalla;
+  altoFigUiTable = .4*altoPantalla;
+ 
+  posxFigUiTable = .2*anchoPantalla;
+  posyFigUiTable = .2*altoPantalla;
+
+  anchoBotUiTable = 0.065*anchoPantalla;
+  altoBotUiTable = 0.015*anchoPantalla;
+
 % Editboxes
 	editW = 50 ;
   editH = 20 ;
