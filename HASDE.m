@@ -1,4 +1,24 @@
-% Disclaimer ...
+% ==============================================================================
+% --------     HASDE: una Herramienta abierta de Aprendizaje interactivo 
+%                                   del Metodo de Slope DEflection      --------
+%~ Copyright (C) 2019, Joaquin Viera, Jorge M. Perez Zerpa
+
+%~ This file is part of HASDE.
+
+%~ HASDE is free software: you can redistribute it and/or modify
+%~ it under the terms of the GNU General Public License as published by
+%~ the Free Software Foundation, either version 3 of the License, or
+%~ (at your option) any later version.
+
+%~ HASDE is distributed in the hope that it will be useful,
+%~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+%~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%~ GNU General Public License for more details.
+
+%~ You should have received a copy of the GNU General Public License
+%~ along with HASDE.  If not, see <https://www.gnu.org/licenses/>.
+
+% ==============================================================================
 
 
 function HASDE
@@ -9,7 +29,6 @@ function HASDE
 
 	GUIgeom
   
-	
 	
   fig 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'position', vecFig, 'name', ['HASDe: Herramienta Abierta de Aprendizaje interactiva del metodo de Slope Deflection']) ;
   fig2 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', 'Entrada de datos', 'position', [posxFigUiTable posyFigUiTable anchoFigUiTable altoFigUiTable]) ;
@@ -593,16 +612,6 @@ function verif(src, eventdata, fig, fig2)
 		nodedofs = [] ;
 		for i = 1:size(despsVals,1)
 			nod = despsVals(i,1) ;
-			%~ pos = nod ; 
-			%~ if size(handles.nodesRep,1) > 0 
-				%~ if ismember(nod, handles.nodesRep(:,1)) 
-					%~ for j = 1:handles.nnodesTot
-						%~ if isequal(handles.NodesSd(pos,:), handles.NodesO(j,:))
-							%~ nod = j ;
-						%~ end
-					%~ end
-				%~ end
-			%~ end
 			for j=1:handles.nnodesTot
 				if isequal(handles.NodesSd(nod,:), handles.NodesO(j,:))
 					newNod = j ;
@@ -634,6 +643,9 @@ function verif(src, eventdata, fig, fig2)
 	guidata(fig2,handles2) ;
 end
 
+
+
+
 % Action buttons
 function actionButton(src, eventdata, fig, fig3)
 	
@@ -644,11 +656,7 @@ function actionButton(src, eventdata, fig, fig3)
   
   handles.currDir = pwd ;
   
-  % BORRAR DESPUES
-  
-  %~ handles.onsasPath = [ pwd '.\onsas'] ;
   handles.onsasPath = [ pwd '/onsas'] ;
-  %~ handles.onsasPath = 'C:\Users\Usuario\Desktop\repos\onsas' ;
   addpath( [ handles.onsasPath '/sources'] );
 	addpath( [ handles.onsasPath '/input'  ] );
   
@@ -720,21 +728,11 @@ function actionButton(src, eventdata, fig, fig3)
 		plotSd
 		
 	elseif strcmp(buttonString, 'Licencia')
-		h = msgbox('Read COPYING.txt file for more details.', 'License directory.') ;
+		h = msgbox('Read LICENSE file for more details.', 'License directory.') ;
 	end
-	
-	
-	
-	
-	
 	
 	guidata(fig, handles) ;	
 	guidata(fig3, handles3) ;	
 	
-	
 end
-
-
-
-
 
