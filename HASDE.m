@@ -1,6 +1,6 @@
 % ==============================================================================
 % --------     HASDE: una Herramienta abierta de Aprendizaje interactivo 
-%                                   del Metodo de Slope DEflection      --------
+%                                   del Metodo de Slope Deflection      --------
 %~ Copyright (C) 2019, Joaquin Viera, Jorge M. Perez Zerpa
 
 %~ This file is part of HASDE.
