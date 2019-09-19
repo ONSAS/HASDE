@@ -64,11 +64,25 @@ Se utilizarán en todas las ecuaciones las condiciones de contorno: desplazamien
 
 \subsubsection{Ecuaciones de solicitaciones por elemento}
 
-Las ecuaciones de equilibro que se usarán para aplicar el método son las de equilibrio de momentos en 2, equilibrio de momentos en 3 y equilibrio de fuerzas en el piso. Para esto se calculan a continuación algunas de las fuerzas y momentos nodales que serán necesarias:
+Las ecuaciones de equilibro que se usarán para aplicar el método son: las de equilibrio de momentos en 2, equilibrio de momentos en 3 y equilibrio de fuerzas en el piso. Para esto se calculan a continuación algunas de las fuerzas y momentos nodales que serán necesarias.
+
+\paragraph{Ecuaciones de momentos}
+
+Usando la ecuación de momento en 1 en la barra 1-2 se tiene:
+$$
+M_{12} = \frac{2EI}{6} \left( \theta_2 - 3 \frac{ \Delta } {6} \right).
+$$
+
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+	M_{12}  = 36.47 \theta_2 - 18.2 \Delta}
+\end{equation}
 
 Usando la ecuación de momento en 2 en la barra 2-1 se tiene:
 $$
-	M_{21} = \frac{2EI}{6} ( 2\theta_2 - 3 \frac{ \Delta } {6} ).
+	M_{21} = \frac{2EI}{6} \left( 2\theta_2 - 3 \frac{ \Delta } {6} \right).
 $$
 
 sustituyendo $EI$ se tiene%
@@ -79,7 +93,7 @@ M_{21}  = 72.9 \theta_2 - 18.2 \Delta}
  
 Usando la ecuación de momento en 2 en la barra 2-3 se tiene:
 $$
-	M_{23} = \frac{2EI}{9} (2\theta_B +\theta_C ) + \frac{ P \cdot 3 \cdot 6^2}{9^2}
+	M_{23} = \frac{2EI}{9} \left(2\theta_2 +\theta_3 \right) + \frac{ P \cdot 3 \cdot 6^2}{9^2}
 $$
 
 sustituyendo $EI$:
@@ -90,11 +104,9 @@ M_{23} = 48.6 \theta_2 + 24.3 \theta_3  + 1800
 }
 \end{equation}
 
-
-
-Para la barra 2-3 se tiene:
+Para la barra 2-3, utilizando la ecuación de momento en 3 se tiene:
 $$
-M_{32} = \frac{2EI}{9} (2\theta_3 +\theta_2 ) - \frac{P \cdot 3^2 \cdot 6}{9^2}
+M_{32} = \frac{2EI}{9} \left(2\theta_3 +\theta_2 \right) - \frac{P \cdot 3^2 \cdot 6}{9^2}
 $$
 sustituyendo $EI$ se tiene:
 
@@ -104,13 +116,107 @@ M_{32} = 48.6 \theta_3 + 24.3 \theta_2 - 900
 }
 \end{equation}
 
-\textbf{completar
-...
 }
-%y para la barra CD
-%\begin{equation}
-%M_{CD} = \frac{2EI}{9} (2\theta_C - \frac{3}{9} \Delta_{BC} )
-%\end{equation}
+
+Planteando la ecuación de momento en 3 para la barra 3-4 se tiene:
+
+$$
+M_{34} = \frac{2EI}{9} \left(2\theta_3 - \frac{3}{9} \Delta \right)
+$$
+
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+	M_{34} = 48.6 \theta_3 - 8.1 \Delta
+}
+\end{equation}
+
+Planteando la ecuación de momento en 4 para la barra 3-4 se tiene:
+
+$$
+M_{43} = \frac{2EI}{9} \left(\theta_3 - \frac{3}{9} \Delta \right)
+$$
+
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+	M_{34} = 24.31 \theta_3 - 8.1 \Delta
+}
+\end{equation}
+
+\paragraph{Ecuaciones de fuerzas nodales}
+
+Planteando la ecuación de cortante en 2 para la barra 2-1, se tiene:
+
+$$
+F_{21} = \frac{-(M_{21}+M_{12})}{6}
+$$
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+	F_{21} = -18.22 \theta_2 + 6.08 \Delta
+}
+\end{equation}
+
+Planteando la ecuación de cortante en 3 para la barra 3-4, se tiene:
+
+$$
+F_{34} = \frac{-(M_{34}+M_{43})}{6}
+$$
+sustituyendo $EI$ se tiene:
+
+\begin{equation}
+\boxed{
+	F_{34} = -8.10 \theta_3 + 1.80 \Delta
+}
+\end{equation}
+
+\subsubsection{Matriz de rigidez}
+
+Para determinar la matriz de rigidez, se deben imponer condiciones para resolver la estructura. En el ejemplo las condiciones a imponer son las siguientes:
+
+
+\begin{eqnarray}
+	\left\lbrace 
+	\begin{array}{l}
+	M_{21}+M_{23} = 0 \\
+	M_{32}+M_{34} = 0 \\
+	F_{21}+F_{34} = 0
+	\end{array}
+\end{eqnarray}
+
+Sumando las ecuaciones determinadas anteriormente, se tiene:
+
+\begin{eqnarray}
+	\left\lbrace 
+	\begin{array}{l}
+	121.56 \theta_{2} + 24.31 \theta_{3} -18.23 +1800 = 0\\
+	24.31 \theta_{2} + 48.62 \theta_{3} -8.10 -900  = 0\\
+	-18.23 \theta_{2} -8.10 \theta_{3} +7.88 = 0
+	\end{array}
+\end{eqnarray}
+
+Por lo tanto, la matriz KGlob que se ingresa en HASDE resulta:
+
+\begin{eqnarray}
+	KGlob = \left[
+	\begin{array}{lll}
+	121.56 & 24.31 & -18.23 \\
+	24.31 & 48.62 & -8.10 \\
+	-18.23 & -8.10 & 7.88	
+	\end{array}
+	\right]
+\end{eqnarray}
+
+\subsubsection{Vector de fuerzas externas}
+
+El vector de fuerzas externas se construye a partir de los términos independientes de las condiciones que se imponen para resolver el problema. Por lo tanto, el vector de fuerzas externas que se debe ingresar en HASDE resulta:
+
+
+
 %
 %
 %
