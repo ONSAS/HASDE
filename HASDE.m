@@ -30,11 +30,11 @@ function HASDE
 	GUIgeom
   
 	
-  fig 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'position', vecFig, 'name', ['HASDe: Herramienta Abierta de Aprendizaje interactiva del metodo de Slope Deflection']) ;
+  fig 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'position', vecFig, 'name', ['HASDE: Herramienta Abierta de Aprendizaje interactiva del metodo de Slope Deflection']) ;
   fig2 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', 'Entrada de datos', 'position', [posxFigUiTable posyFigUiTable anchoFigUiTable altoFigUiTable]) ;
   fig3 	= figure('menubar', 'none', 'numbertitle', 'off', 'resize', 'off', 'visible' , 'off' , 'name', '', 'position', [posxFigUiTable posyFigUiTable anchoFigUiTable altoFigUiTable]) 	 ;
   
-  posFig2 = get(fig2,'position')
+  posFig2 = get(fig2,'position') ;
   
   handles 	= guidata(fig) ;
 	handles2 	= guidata(fig2);
@@ -145,8 +145,8 @@ function HASDE
 	
 	% Data Handles
 	
-  anchoTabUiTable = posFig2(3)*.8 
-  altoTabUiTable = posFig2(4)*.8 
+  anchoTabUiTable = posFig2(3)*.8 ;
+  altoTabUiTable = posFig2(4)*.8 ;
   posxTabUiTable = .1*posFig2(3) ;
   posyTabUiTable = .1*posFig2(4) ;
   

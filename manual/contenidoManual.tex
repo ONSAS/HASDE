@@ -192,10 +192,10 @@ Sumando las ecuaciones determinadas anteriormente, se tiene:
 
 \begin{eqnarray}
 	\left\lbrace 
-	\begin{array}{l}
-	121.56 \theta_{2} + 24.31 \theta_{3} -18.23 +1800 = 0\\
-	24.31 \theta_{2} + 48.62 \theta_{3} -8.10 -900  = 0\\
-	-18.23 \theta_{2} -8.10 \theta_{3} +7.88 = 0
+	\begin{array}{llll}
+	121.56 \theta_{2} &+ 24.31 \theta_{3} &-18.23 +1800 &= 0\\
+	24.31 \theta_{2} &+ 48.62 \theta_{3} &-8.10 -900  &= 0\\
+	-18.23 \theta_{2} &-8.10 \theta_{3} &+7.88 &= 0
 	\end{array}
 \end{eqnarray}
 
@@ -204,18 +204,26 @@ Por lo tanto, la matriz KGlob que se ingresa en HASDE resulta:
 \begin{eqnarray}
 	KGlob = \left[
 	\begin{array}{lll}
-	121.56 & 24.31 & -18.23 \\
-	24.31 & 48.62 & -8.10 \\
-	-18.23 & -8.10 & 7.88	
+	121.56 & 24.31  -&18.23 \\
+	24.31 & 48.62  -&8.10 \\
+	-18.23  -&8.10 &7.88	
 	\end{array}
 	\right]
 \end{eqnarray}
 
 \subsubsection{Vector de fuerzas externas}
 
-El vector de fuerzas externas se construye a partir de los términos independientes de las condiciones que se imponen para resolver el problema. Por lo tanto, el vector de fuerzas externas que se debe ingresar en HASDE resulta:
+El vector de fuerzas externas se construye a partir de los términos independientes de las condiciones que se imponen para resolver el problema. Por lo tanto, el vector de fuerzas externas resulta:
 
-
+\begin{eqnarray}
+F_{ext} = \left[
+\begin{array}{l}
+-1800 \\
+900 \\
+0
+\end{array}
+\right]
+\end{eqnarray}
 
 %
 %
@@ -310,3 +318,40 @@ El vector de fuerzas externas se construye a partir de los términos independien
 
 
 \subsection{Verificación usando HASDE}
+
+\subsubsection{Interfaz gráfica}
+La ventana de inicio de HASDE se indica en la siguiente figura.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=.5\textwidth]{hasde.png}
+	\end{center}
+\end{figure}
+ 
+\paragraph{Cargar estructura}
+Para resolver una estructura, se debe cargar un archivo de extensión \verb|.m| que contiene la información de la misma. Se puede acceder a dichos archivos mediante el botón \verb|Cargar .m| en el panel inferior.
+
+\paragraph{Datos del problema}
+En este panel se puede acceder a la información contenida dentro del archivo cargado con el fin de resolver la estructura.
+En dichos botones se muestra el número de elemento, sus secciones y materiales, los nodos y sus coordenadas y los valores y la posición de las cargas que actúan sobre la estructura.
+
+\paragraph{Geometría}
+En este panel se muestra la estructura con la numeración de los nodos, las cargas que actúan y los apoyos. La convención utilizada para los apoyos es la siguiente:
+\begin{itemize}
+	\item Desplazamiento impedido: Se materializa mediante un triángulo en la dirección que restringe el desplazamiento. El momento flector en estos apoyos es nulo.
+	\item Giro impedido: Se materializa mediante un cuadrado. En estos apoyos puede existir un momento flector.  
+\end{itemize}
+
+\paragraph{Convención de signos}
+En este panel se muestra la convención de signos que se debe utilizar para resolver la estructura. Esta convención coincide con la utilizada en el método de Slope-Deflection.
+
+\paragraph{Resolución}
+Para la resolución de la estructura se deben seguir los pasos que se indican en en el panel \verb|Pasos|. Siguiendo estos pasos, se deben ingresar los correspondientes valores en el panel \verb|Insertar| y verificar los mismos mediante el botón \verb|Verif.|. Una vez realizada la secuencia anterior, en el panel \verb|Resultados| aparecerá el resultado de dicho paso.
+
+\subsubsection{Pasos para la resolución}
+
+\paragraph{# Inc.}
+En este paso, se deben ingresar la cantidad mínima de incógnitas para resolver la estructura. En el problema de ejemplo, dicho número es 3.
+
+\paragraph{Incógnitas}
+En este paso, se deben ingresar cuáles son dichas incógnitas, indicando el nodo e ingresando un 1 en el desplazamiento en el que ocurran.
