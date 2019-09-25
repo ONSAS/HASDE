@@ -16,6 +16,10 @@ La versión actual del código está disponible en el repositorio abierto: \href
 El código fue desarrollado con el apoyo de la Comisión Sectorial de Enseñanza en el marco de la ejecución del proyecto de innovaciones educativas titulado: 
 ``Rediseño de prácticas de enseñanza y evaluación en Resistencia de Materiales''\footnote{ver resumen público de proyecto en	\href{https://www.cse.udelar.edu.uy/blog/proyecto-financiado/rediseno-de-practicas-de-ensenanza-y-evaluacion-en-resistencia-de-materiales/}{https://www.cse.udelar.edu.uy/blog/proyecto-financiado/rediseno-de-practicas-de-ensenanza-y-evaluacion-en-resistencia-de-materiales/}}.
 
+\subsection{Licencia}
+
+Este código es publicado bajo licencia GNU-GPL 3.0. Está distribuido con el objetivo de que sea útil pero sin ningún tipo de garantía. Ver el archivo LICENSE por detalles.
+
 
 \section{Ejemplo demostrativo}
 
@@ -115,8 +119,6 @@ sustituyendo $EI$ se tiene:
 M_{32} = 48.6 \theta_3 + 24.3 \theta_2 - 900
 }
 \end{equation}
-
-}
 
 Planteando la ecuación de momento en 3 para la barra 3-4 se tiene:
 
@@ -227,6 +229,7 @@ F_{ext} = \left[
 \right]
 \end{eqnarray}
 
+En este caso los valores de este vector están en unidades kN o kNm según corresponda.
 %
 %
 %
@@ -321,13 +324,27 @@ F_{ext} = \left[
 
 \subsection{Verificación usando HASDE}
 
-\subsubsection{Interfaz gráfica}
-La ventana de inicio de HASDE se indica en la siguiente figura.
+En esta sección se explica sintéticamente el uso de HASDE para verificar la resolución analítica.
 
-\begin{figure}[H]
+\subsubsection{Convenciones de signo y sistemas de coordenadas}
+
+Los desplazamientos nodales horizontales $\delta_x$ son considerados positivos hacia la izquierda. %
+%
+Los desplazamientos nodales verticales $\delta_y$ son considerados positivos hacia arriba. 
+
+Los sistemas de coordenadas locales de las barras verticales son considerados con el eje $y$ local orientado hacia la izquierda.
+
+
+
+\subsubsection{Interfaz gráfica}
+Al ejecutar la función HASDE.m en Octave (v5.1.0) se abre una interfaz gráfica como la que se muestra en la Figura~\ref{fig:int}. En la figura se muestra el resultado obtenido en Windows.
+
+\begin{figure}[htb]
 	\begin{center}
-		\includegraphics[width=.5\textwidth]{hasde.png}
+		\includegraphics[width=\textwidth]{hasde.png}
 	\end{center}
+ \caption{Interfaz gráfica de inicio HASDE.}
+ \label{fig:int}
 \end{figure}
  
 \paragraph{Cargar estructura}
@@ -357,3 +374,25 @@ En este paso, se deben ingresar la cantidad mínima de incógnitas para resolver
 
 \paragraph{Incógnitas}
 En este paso, se deben ingresar cuáles son dichas incógnitas, indicando el nodo e ingresando un 1 en el desplazamiento en el que ocurran.
+
+En la Figura~\ref{fig:eje} se muestra la ventana de HASDE luego de haber ingresado correctamente el número de incógnitas y las propias incógnitas. En esta figura se muestra la salida en Arch Linux en una pantalla de resolución $3200 \times 1800$.
+%
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=\textwidth]{hasdeValid4}
+	\end{center}
+	\caption{Uso de HASDE en ejemplo.}
+	\label{fig:eje}
+\end{figure}
+
+\paragraph{Ecuaciones de elemento}
+El usuario puede ingresar las ecuaciones que desee y verificarlas con HASDE. Se debe indicar V o M en la primer columna para cortantes o momentos respectivamente.
+
+\paragraph{Ecuaciones de elemento}
+Este es el término independiente del sistema de ecuaciones acoplado para la obtención de los desplazamientos.
+
+\paragraph{Matriz de rigidez global}
+Esta es la matriz del sistema de ecuaciones acoplado para la obtención de los desplazamientos.
+
+\paragraph{Valores de desplazamiento}
+Los desplazamientos solución del problema.
