@@ -72,6 +72,7 @@ Las ecuaciones de equilibro que se usarán para aplicar el método son: las de e
 
 \paragraph{Ecuaciones de momentos}
 
+
 Usando la ecuación de momento en 1 en la barra 1-2 se tiene:
 $$
 M_{12} = \frac{2EI}{6} \left( \theta_2 - 3 \frac{ \Delta } {6} \right).
@@ -150,6 +151,7 @@ sustituyendo $EI$ se tiene:
 
 \paragraph{Ecuaciones de fuerzas nodales}
 
+
 Planteando la ecuación de cortante en 2 para la barra 2-1, se tiene:
 
 $$
@@ -203,14 +205,14 @@ Sumando las ecuaciones determinadas anteriormente, se tiene:
 	\right.
 \end{eqnarray}
 
-Por lo tanto, la matriz KGlob que se ingresa en HASDE resulta:
+Por lo tanto, la matriz de rigidez resulta:
 
 \begin{eqnarray}
-	KGlob = \left[
+	K = \left[
 	\begin{array}{lll}
-	121.56 & 24.31  -&18.23 \\
-	24.31 & 48.62  -&8.10 \\
-	-18.23  -&8.10 &7.88	
+	121.56 &24.31  &-18.23 \\
+	24.31 &48.62  &-8.10 \\
+	-18.23  &-8.10 &7.88	
 	\end{array}
 	\right]
 \end{eqnarray}
@@ -221,7 +223,7 @@ El vector de fuerzas externas se construye a partir de los términos independien
 
 \begin{eqnarray}
 F_{ext} = \left[
-\begin{array}{l}
+\begin{array}{c}
 -1800 \\
 900 \\
 0
