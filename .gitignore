@@ -2,5 +2,5 @@
 *.log
 *.out
 *.gz
-*.pdf
-
+./*.pdf
+manual/*.pdf
