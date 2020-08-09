@@ -260,8 +260,10 @@ nnodesSd 	= size(NodesSd,1) ;
 nodalConstantLoadsSD 	= zeros(nnodesSd,7) ;
 elemNodalLoads 				= zeros(nelemsSd,7) ;
 
+
 % Element orientation
 [elemLenghtsSd, elemAnglesSd] = elemXAngles(ConecSd, NodesSd, xG) ;
+
 
 for i = 1:nelemsTot
 	nod1 = Conec(i,1) ; nod2 = Conec(i,2) ;
@@ -273,32 +275,38 @@ for i = 1:nelemsTot
 			currMom = [ currMom ; nod1 ] ;
 			posO = find(nod1 == nodesF(:)) ;
 			nodalConstantLoadsSD(posNod1,1) = posNod1 ;	nodalConstantLoadsSD(posNod1,2:end) = nodalConstantLoads(posO,2:end) + nodalConstantLoadsSD(posNod1, 2:end);
-			if ismember(nod1, nodesUnif)
-				elemNodalLoads(elem,1) = elem ; elemNodalLoads(elem,2) = posNod1 ; elemNodalLoads(elem,5) = posNod2 ;
-				pos = find(nodesUnif(:) == nod1) ;
-				if elemAnglesSd(elem) == 1 % horizontal
-					elemNodalLoads(elem,3) = elemNodalLoads(elem,3) + nodalUniformLoads(pos,5+1) ;
-				elseif elemAnglesSd(elem) == 0 % vertical
-					elemNodalLoads(elem,3) = elemNodalLoads(elem,3) + nodalUniformLoads(pos,1+1) ;
+			if size(unifLoad,1)>0 && ismember(i,unifLoad(:,1))
+				if ismember(nod1, nodesUnif)
+					elemNodalLoads(elem,1) = elem ; elemNodalLoads(elem,2) = posNod1 ; elemNodalLoads(elem,5) = posNod2 ;
+					pos = find(nodesUnif(:) == nod1) ;
+					if elemAnglesSd(elem) == 1 % horizontal
+						elemNodalLoads(elem,3) = elemNodalLoads(elem,3) + nodalUniformLoads(pos,5+1) ;
+					elseif elemAnglesSd(elem) == 0 % vertical
+						elemNodalLoads(elem,3) = elemNodalLoads(elem,3) + nodalUniformLoads(pos,1+1) ;
+					end
+					elemNodalLoads(elem,4) = elemNodalLoads(elem,4) + nodalUniformLoads(pos,4+1) ;
 				end
-				elemNodalLoads(elem,4) = elemNodalLoads(elem,4) + nodalUniformLoads(pos,4+1) ;
-			end
+			end	
 		end
+		
 		if ismember(nod2, nodesF)
 			currMom = [ currMom ; nod2 ] ;
 			posO = find(nod2 == nodesF(:)) ;
 			nodalConstantLoadsSD(posNod2,1) = posNod2 ; nodalConstantLoadsSD(posNod2,2:end) = nodalConstantLoads(posO,2:end) + nodalConstantLoadsSD(posNod2, 2:end);
-			if ismember(nod2, nodesUnif)
-				elemNodalLoads(elem,1) = elem ; elemNodalLoads(elem,2) = posNod1 ; elemNodalLoads(elem,5) = posNod2 ;
-				posNod2 = find(nodesUnif(:) == nod2) ;
-				if elemAnglesSd(elem) == 1 % horizontal
-					elemNodalLoads(elem,6) = elemNodalLoads(elem,6) + nodalUniformLoads(posNod2,5+1) ;
-				elseif elemAnglesSd(elem) == 0 % vertical
-					elemNodalLoads(elem,6) = elemNodalLoads(elem,6) + nodalUniformLoads(posNod2,1+1) ;
+			if size(unifLoad,1)>0 && ismember(i,unifLoad(:,1))
+				if ismember(nod2, nodesUnif)
+					elemNodalLoads(elem,1) = elem ; elemNodalLoads(elem,2) = posNod1 ; elemNodalLoads(elem,5) = posNod2 ;
+					posNod2 = find(nodesUnif(:) == nod2) ;
+					if elemAnglesSd(elem) == 1 % horizontal
+						elemNodalLoads(elem,6) = elemNodalLoads(elem,6) + nodalUniformLoads(posNod2,5+1) ;
+					elseif elemAnglesSd(elem) == 0 % vertical
+						elemNodalLoads(elem,6) = elemNodalLoads(elem,6) + nodalUniformLoads(posNod2,1+1) ;
+					end
+					elemNodalLoads(elem,7) = elemNodalLoads(elem,7) + nodalUniformLoads(posNod2,4+1) ;
 				end
-				elemNodalLoads(elem,7) = elemNodalLoads(elem,7) + nodalUniformLoads(posNod2,4+1) ;
 			end
 		end
+		
 	elseif ~ismember(nod1, internalNodeElems(:,1)) && ismember(nod2, internalNodeElems(:,1))
 		if ismember(nod2, nodesF) && ~ismember(nod2, currMom)
 			

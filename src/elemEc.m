@@ -101,6 +101,7 @@ for i = 1:size(data,1)
 		eqM2(3) = 0 ;
 	end
 	% Shear equations
+	
 	if elemsEcData(i,1) == nodeselem(1) ; 
 		eqV1 = 	(eqM1 + eqM2) / l + [ 0 0 0 Vi ] ;
 		eqV2 = -(eqM1 + eqM2) / l + [ 0 0 0 Vj ] ;
@@ -121,5 +122,7 @@ for i = 1:size(data,1)
 		end
 	end
 end
+
+
 
 aux = find(resVec(:,1) == 0) ;
