@@ -24,26 +24,22 @@ l = 8 ;
 
 Nodes = [ 0 0 0 ; ...
 					0 0 l ; ...
-					l 0 l ; ...
-					l 0 0 ] ;
+					l/2 0 l ] ;
 
 Conec = [ 1 2 0 0 1 1 2 ; ...
-          2 3 0 0 1 1 2 ; ...
-          4 3 0 0 1 1 2 ] ;
+          2 3 0 0 1 1 2 ] ;
           
 
 nodalSprings = [ 1 inf inf inf inf inf inf ; ...
-                 4 inf inf inf inf inf inf ] ;          
+                 3 	 0 inf inf 0 inf 0 ] ;          
 
 q	= 2.5 ; 
-P = q*l/2 ;
+P = q*l ;
 M = q*l^2/2 ;
 
-nodalConstantLoads = [ 2 P 0 0 M 0 0 ; ...
-											 3 P 0 0 M 0 0 ] ;
+nodalConstantLoads = [ 2 P 0 0 M 0 0 ] ;
 
-unifLoad = [ 1 1 q 0 0 ; ...
-						 3 1 q 0 0 ] ;
+unifLoad = [ 1 1 q 0 0 ] ;
 
 plotParamsVector = [2] ;
 reportBoolean = 1 ;

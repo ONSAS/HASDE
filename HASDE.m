@@ -582,7 +582,6 @@ function verif(src, eventdata, fig, fig2)
 		
 	elseif strcmp(tagNumber, '4')
 		%
-		
 		KStudent = get(handles2.kGlobTable, 'data') ;
 		
 		if norm (handles.Kglob - KStudent ) < handles.tolCheck * norm ( handles.Kglob )
@@ -627,7 +626,7 @@ function verif(src, eventdata, fig, fig2)
 		despsVals(auxDeltas,2) = despsVals(auxDeltas,2)*-1 ;
 		despsVals(auxThetas,3) = despsVals(auxThetas,3)*-1 ;
 		despsVals(auxThetas2,3) = despsVals(auxThetas2,3)*-1 ; 
-		
+
 		if norm( aux - despsVals(:,2:end) ) < handles.tolCheck * norm ( aux )  
 			set(handles.resultDispsVals, 'string', 'Bien')
 		else
